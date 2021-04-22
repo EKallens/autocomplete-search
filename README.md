@@ -4,6 +4,8 @@ This project is a simple demo of an autocomplete with search function of countri
 
 ## Steps to run the project
 
+🚧 `This application is under construction yet`
+
 1. Clone this repo
 ```
 git clone https://github.com/EKallens/autocomplete-search.git
