@@ -1,6 +1,6 @@
 # Country Searcher
 
-This project is a simple demo of an autocomplete with searh function of countries.
+This project is a simple demo of an autocomplete with search function of countries.
 
 ## Steps to run the project
 
