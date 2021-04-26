@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect, useMemo } from 'react'
+import React, { useRef, useState, useEffect, useMemo, useContext } from 'react';
+import { CountryContext } from '../context/CountryContext';
 import AutoCompleteItem from './AutoCompleteItem';
 
 const AutoComplete = ({ data }) => {
@@ -10,6 +11,9 @@ const AutoComplete = ({ data }) => {
     const searchContainerRef = useRef(null);
     const searchResultRef = useRef(null);
 
+    const countryContext = useContext(CountryContext);
+    const { country, setCountry } = countryContext;
+
     useEffect(() => {
         window.addEventListener('mousedown', handleClickOutside);
 
@@ -18,6 +22,12 @@ const AutoComplete = ({ data }) => {
         };
 
     }, []);
+
+    useEffect(() => {
+        if(search.length === 0){
+            showSuggestion();
+        }
+    }, [search]);
 
     const suggestions = useMemo( () => {
         if(!search){
@@ -40,6 +50,12 @@ const AutoComplete = ({ data }) => {
 
     }
 
+    const onSelectItem = (name) => {
+        hideSuggestion();
+        setSearch(name);
+        setCountry(name)
+    }
+
     const showSuggestion = () => setIsVisible(true);
     const hideSuggestion = () => setIsVisible(false);
 
@@ -51,6 +67,7 @@ const AutoComplete = ({ data }) => {
                 className="search-bar"
                 autoComplete="off"
                 onClick={showSuggestion}
+                value={ search }
                 onChange={e => setSearch(e.target.value)}
             />
 
@@ -60,7 +77,7 @@ const AutoComplete = ({ data }) => {
                     <ul className="list-group" ref={searchResultRef}>
                         {
                             suggestions.map( item => (
-                                <AutoCompleteItem key={item.alpha2Code} {...item} />
+                                <AutoCompleteItem key={item.alpha2Code} onSelectItem={ () => onSelectItem(item.name) } {...item} />
                             ))
                         }
                     </ul>
@@ -70,4 +87,4 @@ const AutoComplete = ({ data }) => {
     )
 }
 
-export default AutoComplete
+export default AutoComplete;

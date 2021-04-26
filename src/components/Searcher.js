@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import AutoComplete from './AutoComplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
+import CountryInformation from './CountryInformation';
+import { CountryContext } from '../context/CountryContext';
 
 const Searcher = () => {
 
     const [countries, setCountries] = useState([]);
+    const countryContext = useContext(CountryContext);
+    const { country } = countryContext;
 
     useEffect(() => {
         const getCountries = async() => {
@@ -21,8 +25,6 @@ const Searcher = () => {
         getCountries();
 
     }, [setCountries]);
-
-    console.log(countries);
 
     return (
         <>
@@ -41,8 +43,16 @@ const Searcher = () => {
                     </div>
                 </div>
             </div>
+            {
+                country &&
+                <div className="row">
+                    <div className="col d-flex justify-content-center mt-5">
+                        <CountryInformation />
+                    </div>
+                </div>
+            }
         </>
     )
 }
 
-export default Searcher
+export default Searcher;

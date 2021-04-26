@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AutoCompleteItem = ({ name, capital, region, flag }) => {
+const AutoCompleteItem = ({ name, capital, region, flag, onSelectItem }) => {
     return (
-        <li className="list-group-item">
+        <li className="list-group-item" onClick={onSelectItem}>
             <div className="row">
                 <div className="col text-left">
                     <p className="mb-0 font-weight-bold line-height-1">
@@ -17,4 +17,4 @@ const AutoCompleteItem = ({ name, capital, region, flag }) => {
     )
 }
 
-export default AutoCompleteItem
+export default AutoCompleteItem;
