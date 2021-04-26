@@ -1,8 +1,10 @@
-# Country Searcher
+# 0️⃣1️⃣ Country Searcher 🔎
 
-This project is a simple demo of an autocomplete with searh function of countries.
+This project is a simple demo of an autocomplete with search function of countries. 🚀
 
 ## Steps to run the project
+
+🚧 `This application is under construction yet`
 
 1. Clone this repo
 ```
